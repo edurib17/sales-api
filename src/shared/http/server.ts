@@ -6,12 +6,14 @@ import { errors } from 'celebrate';
 import routes from './routes';
 import AppError from '@shared/errors/appErros';
 import '@shared/typeorm';
+import uploadConfig from '@config/upload';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use('/files', express.static(uploadConfig.directory));
 
 app.use(errors());
 
@@ -31,5 +33,5 @@ app.use(
 );
 
 app.listen(3333, () => {
-  console.log('Sever started on port 3333');
+  console.log('Sever started on port 3333 \u{1F525} ');
 });
